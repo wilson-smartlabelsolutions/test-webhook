@@ -11,7 +11,7 @@ const WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET;
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
-
+app.use(express.json());
 app.post(
   "/webhooks/products/update",
   express.raw({ type: "application/json" }),
