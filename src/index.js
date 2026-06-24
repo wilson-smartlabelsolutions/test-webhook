@@ -17,7 +17,7 @@ app.post(
   express.raw({ type: "application/json" }),
   (req, res) => {
     const hmac = req.get("X-Shopify-Hmac-Sha256");
-
+    console.log("received webhook: ", req.body);
     if (!verifyShopifyWebhook(req.body, hmac, WEBHOOK_SECRET)) {
       return res.status(401).send("Unauthorized");
     }
