@@ -17,10 +17,6 @@ function verifyShopifyWebhook(rawBody, hmacHeader, secret) {
   console.log("Calculated:", digest);
   console.log("Received:  ", hmacHeader);
 
-  if (digestBuffer.length !== hmacBuffer.length) {
-    return false;
-  }
-
   return crypto.timingSafeEqual(digestBuffer, hmacBuffer);
 }
 

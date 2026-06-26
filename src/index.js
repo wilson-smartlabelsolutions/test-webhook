@@ -14,7 +14,7 @@ app.get("/health", (_req, res) => {
 app.use(express.raw({ type: 'application/json' }));
 app.post(
   "/webhooks/products/update",
-  express.raw({ type: "application/json" }),
+  express.raw({ type: "*/*" }),
   (req, res) => {
     const hmac = req.get("X-Shopify-Hmac-Sha256");
     console.log("secret: ", WEBHOOK_SECRET);
