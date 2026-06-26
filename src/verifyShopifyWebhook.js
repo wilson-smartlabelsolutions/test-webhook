@@ -12,8 +12,8 @@ function verifyShopifyWebhook(rawBody, hmacHeader, secret) {
 
   const digestBuffer = Buffer.from(digest, "base64");
   const hmacBuffer = Buffer.from(hmacHeader, "base64");
-  console.log("digestBuffer: ", digestBuffer);
-  console.log("hmacBuffer: ", hmacBuffer);
+  console.log("digestBuffer: ", digestBuffer.toString());
+  console.log("hmacBuffer: ", hmacBuffer.toString());
   if (digestBuffer.length !== hmacBuffer.length) {
     return false;
   }
