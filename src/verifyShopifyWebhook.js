@@ -17,7 +17,7 @@ function verifyShopifyWebhook(rawBody, hmacHeader, secret) {
   console.log("Calculated:", digest);
   console.log("Received:  ", hmacHeader);
 
-  return crypto.timingSafeEqual(digestBuffer, hmacBuffer);
+  return crypto.timingSafeEqual(digestBuffer, hmacBuffer);  
 }
 
 module.exports = { verifyShopifyWebhook };
