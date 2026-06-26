@@ -11,12 +11,14 @@ const WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET;
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
-app.use(express.json());
+app.use(express.raw({ type: 'application/json' }));
 app.post(
   "/webhooks/products/update",
   express.raw({ type: "application/json" }),
   (req, res) => {
     const hmac = req.get("X-Shopify-Hmac-Sha256");
+    console.log("headers: ", req.headers);
+    console.log("hmac: ", hmac);
     console.log("received webhook: ", req.body);
     if (!verifyShopifyWebhook(req.body, hmac, WEBHOOK_SECRET)) {
       return res.status(401).send("Unauthorized");
