@@ -10,10 +10,13 @@ function verifyShopifyWebhook(rawBody, hmacHeader, secret) {
     .update(rawBody)
     .digest("base64");
 
+
   const digestBuffer = Buffer.from(digest, "base64");
   const hmacBuffer = Buffer.from(hmacHeader, "base64");
-  console.log("digestBuffer: ", digestBuffer.toString());
-  console.log("hmacBuffer: ", hmacBuffer.toString());
+
+  console.log("Calculated:", digest);
+  console.log("Received:  ", hmacHeader);
+
   if (digestBuffer.length !== hmacBuffer.length) {
     return false;
   }
