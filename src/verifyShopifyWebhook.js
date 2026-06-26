@@ -7,7 +7,7 @@ function verifyShopifyWebhook(rawBody, hmacHeader, secret) {
 
   const digest = crypto
     .createHmac("sha256", secret)
-    .update(rawBody, "utf8")
+    .update(rawBody)
     .digest("base64");
 
   const digestBuffer = Buffer.from(digest, "utf8");
